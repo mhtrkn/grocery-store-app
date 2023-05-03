@@ -1,5 +1,5 @@
 import React from 'react'
-import { CategoriesShowRoom, Header, SearchBar } from "../../components"
+import { CategoriesShowRoom, Deals, Header, SearchBar, PopularItemShowRoom } from "../../components"
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -11,6 +11,8 @@ export default function Home() {
             <Header />
             <SearchBar />
             <CategoriesShowRoom />
+            <Deals />
+            <PopularItemShowRoom />
         </View>
     )
 }
