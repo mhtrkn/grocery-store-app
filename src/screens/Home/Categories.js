@@ -14,7 +14,7 @@ const Categories = () => {
                         <View key={item.id} style={styles.categoriesBox}>
                             <View style={styles.categoriesInsider}>
                                 <View style={styles.ShowRoom}>
-                                    <Image source={{ uri: (item.photo) }} style={styles.ShowRoomImage} />
+                                    <Image source={item.photo} style={styles.ShowRoomImage} />
                                 </View>
                                 <Text style={styles.showRoomTitle}>{item.title}</Text>
                             </View>
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
     },
     ShowRoomImage: {
-        width: '50%',
-        height: '50%',
+        width: '80%',
+        height: '80%',
         resizeMode: 'contain',
         borderRadius: 10,
     },

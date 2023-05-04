@@ -1,23 +1,36 @@
+import Vegetables from "../assets/vegetables.png";
+import Fruits from "../assets/fruits.png"
+import Drinks from "../assets/drinks.png"
+import MilkEggs from "../assets/milk-eggs.png"
+import Cakes from "../assets/cakes.png"
+import IceCream from "../assets/ice-cream.png"
+import Bakery from "../assets/bakery.png"
+import Snacks from "../assets/snacks.png"
+import Grain from "../assets/grain.png"
+import Cheese from "../assets/cheese.png"
+import CleaningStuff from "../assets/cleaning.png"
+import Biscuit from "../assets/biscuit.png"
+
 export const categoriesShowRoom = [
     {
         id: '1',
         title: 'Vegetables',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Vegetables
     },
     {
         id: '2',
         title: 'Fruits',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Fruits
     },
     {
         id: '3',
         title: 'Milk & Eggs',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: MilkEggs
     },
     {
         id: '4',
         title: 'Drinks',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Drinks
     },
 ];
 
@@ -26,62 +39,92 @@ export const allCategories = [
     {
         id: '1',
         title: 'Vegetables',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Vegetables
     },
     {
         id: '2',
         title: 'Fruits',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Fruits
     },
     {
         id: '3',
         title: 'Milk & Eggs',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: MilkEggs
     },
     {
         id: '4',
         title: 'Drinks',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Drinks
     },
     {
         id: '5',
         title: 'Cakes',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Cakes
     },
     {
         id: '6',
         title: 'Ice - Cream',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: IceCream
     },
     {
         id: '7',
         title: 'Bakery',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Bakery
     },
     {
         id: '8',
         title: 'Snacks',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Snacks
     },
     {
         id: '9',
         title: 'Grain',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Grain
     },
     {
         id: '10',
         title: 'Cheese',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Cheese
     },
     {
         id: '11',
         title: 'Cleaning Stuff',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: CleaningStuff
     },
     {
         id: '12',
         title: 'Biscuit',
-        photo: 'https://img.freepik.com/premium-vector/vegetables-bucket-cartoon-logo_129890-125.jpg?w=2000'
+        photo: Biscuit
+    },
+];
+
+export const popularItems = [
+    {
+        id: '1',
+        title: 'Apple',
+        photo: Vegetables,
+        price: '5.99$',
+        discount: "20%"
+    },
+    {
+        id: '2',
+        title: 'Orange',
+        photo: Fruits,
+        price: '10.99$'
+    },
+    {
+        id: '3',
+        title: 'Pineapple',
+        photo: Fruits,
+        price: '12.49$',
+        discount: "30%"
+    },
+    {
+        id: '4',
+        title: 'Watermelon',
+        photo: Vegetables,
+        price: '19.99$',
+        discount: "15%"
     },
 ];
 

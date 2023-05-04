@@ -1,13 +1,33 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Ionicons, MaterialIcons, Feather } from '@expo/vector-icons';
-import { MenuIcon, NotificationIcon } from '../../assets/icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { FavoriteWhiteIcon, MenuIcon, NotificationIcon } from '../../assets/icons';
 import { useNavigation } from '@react-navigation/native';
-const Header = ({ route }) => {
+const Header = ({ route, Modal, ModalClose }) => {
     const navigation = useNavigation()
     const goBack = () => {
         navigation.goBack()
     }
+    if (Modal) {
+        return (
+            <View style={[styles.container, { height: '12%', backgroundColor: '#04AC66' }]}>
+                <View style={styles.routeInsider}>
+                    <TouchableOpacity onPress={ModalClose} style={styles.closeBtn}>
+                        <Ionicons name="close" size={24} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => console.log('Added favorites')} style={styles.favoriteBtn}>
+                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />
+                    </TouchableOpacity>
+                    <View style={styles.locationContainer}>
+                        <View style={styles.locationBottomContainer}>
+                            <Text style={[styles.routeText, { color: 'white' }]}>{route}</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
     if (route) {
         return (
             <View style={styles.container}>
@@ -41,7 +61,7 @@ const Header = ({ route }) => {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.avatarBtn}>
-                    <NotificationIcon width={24} height={24} />
+                    <NotificationIcon width={24} height={24} strokeWidth={.6} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -54,7 +74,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'fixed',
         width: '100%',
-        height: '14%',
+        height: '13%',
         justifyContent: 'flex-end',
         alignItems: 'center',
         borderWidth: 0,
@@ -114,6 +134,26 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 700,
         color: '#333',
+    },
+    closeBtn: {
+        position: 'absolute',
+        left: 0,
+        bottom: -5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        borderRadius: 8,
+    },
+    favoriteBtn: {
+        position: 'absolute',
+        right: 0,
+        bottom: -5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        borderRadius: 8,
     },
     goBackBtn: {
         position: 'absolute',

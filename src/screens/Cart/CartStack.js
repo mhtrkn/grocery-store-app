@@ -6,7 +6,7 @@ const Stack = createStackNavigator();
 function CartStack() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Screen name="Cart Stack" component={Cart} />
             <Stack.Screen name="Cart Detail" component={CartDetail} />
         </Stack.Navigator>
     );

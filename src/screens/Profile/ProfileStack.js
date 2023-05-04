@@ -6,7 +6,7 @@ const Stack = createStackNavigator();
 function ProfileStack() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Profile Stack" component={Profile} />
             <Stack.Screen name="Profile Detail" component={ProfileDetail} />
         </Stack.Navigator>
     );

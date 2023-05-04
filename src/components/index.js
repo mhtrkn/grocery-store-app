@@ -7,7 +7,7 @@ import CategoriesShowRoom from "./CategoriesShowRoom"
 import Deals from "./Deals"
 import SectionHeader from "./SectionHeader"
 import PopularItemShowRoom from "./PopularItemShowRoom"
-
+import DetailModal from "./DetailModal"
 export {
     Feed,
     Article,
@@ -17,5 +17,6 @@ export {
     CategoriesShowRoom,
     Deals,
     SectionHeader,
-    PopularItemShowRoom
+    PopularItemShowRoom,
+    DetailModal
 }

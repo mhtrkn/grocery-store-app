@@ -8,7 +8,7 @@ import SectionHeader from './SectionHeader';
 const ShowRoom = ({ photo, title }) => (
     <View View style={styles.ShowRoomInsider} >
         <View style={styles.ShowRoom}>
-            <Image source={{ uri: (photo) }} style={styles.ShowRoomImage} />
+            <Image source={photo} style={styles.ShowRoomImage} />
         </View>
         <Text style={styles.showRoomTitle}>{title}</Text>
     </View>
@@ -56,10 +56,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     ShowRoomImage: {
-        width: '50%',
-        height: '50%',
+        width: '100%',
+        height: '100%',
         resizeMode: 'contain',
-        borderRadius: 10,
     },
     ShowRoom: {
         width: 75,
