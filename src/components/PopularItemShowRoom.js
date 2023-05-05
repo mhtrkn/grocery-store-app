@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import SectionHeader from './SectionHeader';
@@ -6,14 +6,17 @@ import { popularItems } from '../constants';
 import { FavoriteIcon, FavoriteRedIcon } from '../../assets/icons';
 import { Entypo } from '@expo/vector-icons';
 import DetailModal from './DetailModal';
+import Tabs from './DetailModalTopTabs';
+
 const Seperator = () => (
     <View style={{ padding: 10 }} />
 )
 
-const ItemCard = ({ data, open, openDetail, onPress, like }) => {
+const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
+
     return (
         <>
-            <DetailModal visible={open} onPress={openDetail} />
+            <DetailModal data={sendData} visible={open} onPress={openDetail} />
             <TouchableOpacity activeOpacity={.4} onPress={openDetail} style={styles.itemCardContainer}>
                 {data.discount &&
                     <View style={styles.discountStyle}>
@@ -53,21 +56,26 @@ const ItemCard = ({ data, open, openDetail, onPress, like }) => {
 
 const PopularItemShowRoom = () => {
     const navigation = useNavigation()
+    const [active, setActive] = useState(0)
     const [isLiked, setLiked] = useState(false)
     const [isOpen, setOpen] = useState(false)
     const handleRoute = () => { }
-    const handleItemDetail = () => {
+    const [sendData, setSendData] = useState([])
+    const handleItemDetail = (event) => {
+        setSendData(event)
         setOpen(!isOpen)
+
     }
     const handleLike = () => {
         setLiked(!isLiked)
     }
+
     return (
         <View style={styles.container}>
             <SectionHeader title={"Popular Item"} buttonName={"See All"} onPress={handleRoute} />
             <FlatList
                 data={popularItems}
-                renderItem={({ item }) => <ItemCard data={item} open={isOpen} openDetail={handleItemDetail} onPress={handleLike} like={isLiked} />}
+                renderItem={({ item }) => <ItemCard data={item} sendData={sendData} open={isOpen} openDetail={() => handleItemDetail(item)} onPress={handleLike} like={isLiked} />}
                 keyExtractor={item => item.id}
                 horizontal
                 style={{ paddingVertical: 6 }}

@@ -11,18 +11,18 @@ const Header = ({ route, Modal, ModalClose }) => {
     if (Modal) {
         return (
             <View style={[styles.container, { height: '12%', backgroundColor: '#04AC66' }]}>
-                <View style={styles.routeInsider}>
+                <View style={[styles.routeInsider, { justifyContent: 'space-between', alignItems: 'flex-end', flexDirection: 'row' }]}>
                     <TouchableOpacity onPress={ModalClose} style={styles.closeBtn}>
                         <Ionicons name="close" size={24} color="white" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('Added favorites')} style={styles.favoriteBtn}>
-                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />
                     </TouchableOpacity>
                     <View style={styles.locationContainer}>
                         <View style={styles.locationBottomContainer}>
                             <Text style={[styles.routeText, { color: 'white' }]}>{route}</Text>
                         </View>
                     </View>
+                    <TouchableOpacity onPress={() => console.log('Added favorites')} style={styles.favoriteBtn}>
+                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -136,21 +136,15 @@ const styles = StyleSheet.create({
         color: '#333',
     },
     closeBtn: {
-        position: 'absolute',
-        left: 0,
-        bottom: -5,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
+        borderRadius: 8,
         width: 40,
         height: 40,
-        borderRadius: 8,
     },
     favoriteBtn: {
-        position: 'absolute',
-        right: 0,
-        bottom: -5,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         width: 40,
         height: 40,
         borderRadius: 8,

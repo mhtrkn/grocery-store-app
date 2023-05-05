@@ -8,6 +8,9 @@ import Deals from "./Deals"
 import SectionHeader from "./SectionHeader"
 import PopularItemShowRoom from "./PopularItemShowRoom"
 import DetailModal from "./DetailModal"
+import InsideItemDetail from "./InsideItemDetail"
+import Recommend from "./Recommend"
+
 export {
     Feed,
     Article,
@@ -18,5 +21,7 @@ export {
     Deals,
     SectionHeader,
     PopularItemShowRoom,
-    DetailModal
+    DetailModal,
+    InsideItemDetail,
+    Recommend
 }
