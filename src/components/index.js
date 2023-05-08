@@ -10,6 +10,9 @@ import PopularItemShowRoom from "./PopularItemShowRoom"
 import DetailModal from "./DetailModal"
 import InsideItemDetail from "./InsideItemDetail"
 import Recommend from "./Recommend"
+import BottomContainer from "./BottomContainer"
+import ShippingAddress from "./ShippingAddress"
+import OrderSummary from "./OrderSummary"
 
 export {
     Feed,
@@ -23,5 +26,8 @@ export {
     PopularItemShowRoom,
     DetailModal,
     InsideItemDetail,
-    Recommend
+    Recommend,
+    BottomContainer,
+    ShippingAddress,
+    OrderSummary,
 }

@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { currentScreenName } from './reducer'
+import { currentScreenName, cartModalVisible } from './reducer'
 
 export const store = configureStore({
     reducer: {
-        currentScreenName
+        currentScreenName,
+        cartModalVisible
     },
 })

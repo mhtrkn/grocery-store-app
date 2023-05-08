@@ -1,7 +1,8 @@
-import { UPDATE_SCREEN_NAME } from './actions';
+import { UPDATE_SCREEN_NAME, VISIBLE_CHANGE } from './actions';
 
 const initialState = {
-    currentScreenName: ''
+    currentScreenName: '',
+    cartModalVisible: false,
 };
 
 const currentScreenName = (state = initialState.currentScreenName, action) => {
@@ -13,6 +14,16 @@ const currentScreenName = (state = initialState.currentScreenName, action) => {
     }
 }
 
+const cartModalVisible = (state = initialState.cartModalVisible, action) => {
+    switch (action.type) {
+        case VISIBLE_CHANGE:
+            return state = action.payload
+        default:
+            return state;
+    }
+}
+
 export {
-    currentScreenName
+    currentScreenName,
+    cartModalVisible
 }

@@ -1,18 +1,27 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { FavoriteWhiteIcon, MenuIcon, NotificationIcon } from '../../assets/icons';
+import { Ionicons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { CartTabIcon, FavoriteWhiteIcon, MenuIcon } from '../../assets/icons';
 import { useNavigation } from '@react-navigation/native';
-const Header = ({ route, Modal, ModalClose }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { cartModalVisible } from '../redux/actions';
+const Header = ({ Cart, route, Modal, ModalClose }) => {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
     const goBack = () => {
         navigation.goBack()
     }
+    const  visible = useSelector(state => state.cartModalVisible)
+
+    const closeCartModal = () => {
+        dispatch(cartModalVisible(visible ? false : true))
+    }
+
     if (Modal) {
         return (
             <View style={[styles.container, { height: '12%', backgroundColor: '#04AC66' }]}>
                 <View style={[styles.routeInsider, { justifyContent: 'space-between', alignItems: 'flex-end', flexDirection: 'row' }]}>
-                    <TouchableOpacity onPress={ModalClose} style={styles.closeBtn}>
+                    <TouchableOpacity onPress={ModalClose ? ModalClose : closeCartModal} style={styles.closeBtn}>
                         <Ionicons name="close" size={24} color="white" />
                     </TouchableOpacity>
                     <View style={styles.locationContainer}>
@@ -21,7 +30,9 @@ const Header = ({ route, Modal, ModalClose }) => {
                         </View>
                     </View>
                     <TouchableOpacity onPress={() => console.log('Added favorites')} style={styles.favoriteBtn}>
-                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />
+                        {Cart ? <AntDesign name="delete" size={24} color="white" />
+                        :
+                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -53,15 +64,15 @@ const Header = ({ route, Modal, ModalClose }) => {
                 <View style={styles.locationContainer}>
                     <Text style={{ fontWeight: 500 }}>Location</Text>
                     <View style={styles.locationBottomContainer}>
-                        <Ionicons name="location-sharp" size={18} color="#333" />
+                        <Ionicons name="location-sharp" size={18} color="#444" />
                         <Text style={styles.locationText}>Istanbul, Turkey</Text>
                         <TouchableOpacity>
-                            <MaterialIcons name="keyboard-arrow-down" size={24} color="#333" />
+                            <MaterialIcons name="keyboard-arrow-down" size={24} color="#444" />
                         </TouchableOpacity>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.avatarBtn}>
-                    <NotificationIcon width={24} height={24} strokeWidth={.6} />
+                <TouchableOpacity onPress={closeCartModal} style={styles.avatarBtn}>
+                    <CartTabIcon width={30} height={30} stroke="#444" />
                 </TouchableOpacity>
             </View>
         </View>
@@ -128,12 +139,12 @@ const styles = StyleSheet.create({
     locationText: {
         fontSize: 16,
         fontWeight: 700,
-        color: '#333'
+        color: '#444'
     },
     routeText: {
         fontSize: 18,
         fontWeight: 700,
-        color: '#333',
+        color: '#444',
     },
     closeBtn: {
         alignItems: 'center',
@@ -157,7 +168,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 8,
-        shadowColor: "#333",
+        shadowColor: "#444",
         shadowOffset: {
             width: 0,
             height: 0,

@@ -6,7 +6,6 @@ import { popularItems } from '../constants';
 import { FavoriteIcon, FavoriteRedIcon } from '../../assets/icons';
 import { Entypo } from '@expo/vector-icons';
 import DetailModal from './DetailModal';
-import Tabs from './DetailModalTopTabs';
 
 const Seperator = () => (
     <View style={{ padding: 10 }} />

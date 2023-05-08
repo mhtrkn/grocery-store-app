@@ -1,7 +1,8 @@
-import { Image, Modal, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { Image, Modal, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import Header from './Header'
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'
+import BottomContainer from './BottomContainer'
 
 const DetailModal = ({ data, visible, onPress }) => {
     const [addText, setAddText] = useState("Add to Cart")
@@ -33,32 +34,42 @@ const DetailModal = ({ data, visible, onPress }) => {
             }
         }
     }
-    console.log(data)
+
     return (
         <Modal visible={visible} style={styles.container} animationType="slide" >
             <View style={styles.container}>
                 <Header route={"Item Detail"} Modal={true} ModalClose={onPress} />
-                <View style={styles.imageContainer}>
-                    {data.discount &&
-                        <View style={styles.discountContainer}>
-                            <Text style={styles.discountStyle}>
-                                {data.discount}
+                <ScrollView style={styles.scrollContainer} contentContainerStyle={{
+                    justifyContent: 'flex-start',
+                    alignItems: 'center'
+                }}>
+                    <View style={styles.imageContainer}>
+                        {data.discount &&
+                            <View style={styles.discountContainer}>
+                                <Text style={styles.discountStyle}>
+                                    {data.discount}
+                                </Text>
+                            </View>
+                        }
+                        <Image source={data.photo} style={styles.image} />
+                    </View>
+                    <View style={styles.contentContainer}>
+                        <View style={styles.contentColumn}>
+                            <Text style={styles.priceStyle}>
+                                {data.price}
+                            </Text>
+                            <Text style={styles.itemTitle}>
+                                {data.title}
                             </Text>
                         </View>
-                    }
-                    <Image source={data.photo} style={styles.image} />
-                </View>
-                <View style={styles.contentContainer}>
-                    <View style={styles.contentColumn}>
-                        <Text style={styles.priceStyle}>
-                            {data.price}
-                        </Text>
-                        <Text style={styles.itemTitle}>
-                            {data.title}
+                    </View>
+                    <View>
+                        <Text>
+                            Hako
                         </Text>
                     </View>
-                </View>
-                <View style={styles.addBtnContainer}>
+                </ScrollView>
+                <BottomContainer>
                     {!added ?
                         (<TouchableOpacity onPress={handleAdded} style={styles.addBtn}>
                             <Text style={styles.addText}>
@@ -79,7 +90,7 @@ const DetailModal = ({ data, visible, onPress }) => {
 
                         </View>
                     }
-                </View>
+                </BottomContainer>
             </View>
         </Modal>
     )
@@ -94,17 +105,20 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
+    scrollContainer: {
+        width: '100%',
+        backgroundColor: 'red',
+        paddingVertical: '5%',
+    },
     imageContainer: {
         width: '100%',
-        height: '40%',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
     },
     image: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover'
+        width: '80%',
+        resizeMode: 'contain'
     },
     discountContainer: {
         position: 'absolute',
@@ -183,11 +197,10 @@ const styles = StyleSheet.create({
         shadowColor: '#04AC66',
         shadowOffset: {
             width: 0,
-            height: 4,
+            height: 2,
         },
-        shadowOpacity: 0.15,
-        shadowRadius: 7.25,
-        elevation: 5,
+        shadowOpacity: .25,
+        shadowRadius: 10,
 
     },
     calculateLeftBtn: {
