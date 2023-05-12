@@ -10,7 +10,6 @@ const Tab = createMaterialTopTabNavigator();
 export default function Home() {
 
     const visible = useSelector(state => state.cartModalVisible)
-    console.log('Visible: ',visible)
 
     return (
         <View style={styles.container}>

@@ -30,7 +30,8 @@ function BottomTabs() {
                 ),
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    fontWeight: 600
+                    fontWeight: 600,
+                    marginTop: 2,
                 },
                 tabBarActiveTintColor: "#04AC66"
             }} />
@@ -43,7 +44,8 @@ function BottomTabs() {
                 ),
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    fontWeight: 600
+                    fontWeight: 600,
+                    marginTop: 2,
                 },
                 tabBarActiveTintColor: "#04AC66"
             }} />
@@ -56,7 +58,8 @@ function BottomTabs() {
                 ),
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    fontWeight: 600
+                    fontWeight: 600,
+                    marginTop: 2,
                 },
                 tabBarActiveTintColor: "#04AC66"
             }} />
@@ -78,7 +81,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         height: '100%',
-        gap: 2,
         position: 'relative'
     },
     iconActive: {

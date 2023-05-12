@@ -6,6 +6,8 @@ import { popularItems } from '../constants';
 import { FavoriteIcon, FavoriteRedIcon } from '../../assets/icons';
 import { Entypo } from '@expo/vector-icons';
 import DetailModal from './DetailModal';
+import { useSelector } from 'react-redux';
+import { isItemFavorite } from "../utils";
 
 const Seperator = () => (
     <View style={{ padding: 10 }} />
@@ -25,7 +27,7 @@ const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
                 <View style={styles.favoriteBtn}>
                     <TouchableOpacity onPress={onPress}>
                         {
-                            like ?
+                            isItemFavorite(data) ?
                                 <FavoriteRedIcon width={20} height={20} />
                                 :
                                 <FavoriteIcon width={20} height={20} strokeWidth={1.8} />
@@ -54,8 +56,6 @@ const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
 }
 
 const PopularItemShowRoom = () => {
-    const navigation = useNavigation()
-    const [active, setActive] = useState(0)
     const [isLiked, setLiked] = useState(false)
     const [isOpen, setOpen] = useState(false)
     const handleRoute = () => { }
