@@ -24,6 +24,7 @@ const App = () => {
   return (
     <NavigationContainer
       ref={navigationRef}
+      independent
       onReady={() => {
         routeNameRef.current = navigationRef.getCurrentRoute().name;
       }}

@@ -1,28 +1,46 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { FavoriteWhiteIcon, MenuIcon, NotificationIcon } from '../../assets/icons';
+import { Ionicons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { CartTabIcon, FavoriteWhiteIcon, MenuIcon } from '../../assets/icons';
 import { useNavigation } from '@react-navigation/native';
-const Header = ({ route, Modal, ModalClose }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { cartModalVisible } from '../redux/actions';
+const Header = ({ cancelRoute, Cart, route, Modal, ModalClose }) => {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
     const goBack = () => {
         navigation.goBack()
     }
+    const visible = useSelector(state => state.cartModalVisible)
+
+    const closeCartModal = () => {
+        dispatch(cartModalVisible(visible ? false : true))
+    }
+    const handleRoute = ({ Cart }) => {
+        if (Cart) {
+            console.log('Do you want the delete?')
+        } else {
+            console.log('Added Favorites!')
+        }
+    }
+
     if (Modal) {
         return (
             <View style={[styles.container, { height: '12%', backgroundColor: '#04AC66' }]}>
-                <View style={styles.routeInsider}>
-                    <TouchableOpacity onPress={ModalClose} style={styles.closeBtn}>
+                <View style={[styles.routeInsider, { justifyContent: 'space-between', alignItems: 'flex-end', flexDirection: 'row' }]}>
+                    <TouchableOpacity onPress={ModalClose ? ModalClose : closeCartModal} style={styles.closeBtn}>
                         <Ionicons name="close" size={24} color="white" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('Added favorites')} style={styles.favoriteBtn}>
-                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />
                     </TouchableOpacity>
                     <View style={styles.locationContainer}>
                         <View style={styles.locationBottomContainer}>
                             <Text style={[styles.routeText, { color: 'white' }]}>{route}</Text>
                         </View>
                     </View>
+                    <TouchableOpacity onPress={() => handleRoute({ Cart: Cart ? true : false })} style={styles.favoriteBtn}>
+                        {Cart ? <AntDesign name="delete" size={24} color="white" />
+                            :
+                            <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />}
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -32,9 +50,9 @@ const Header = ({ route, Modal, ModalClose }) => {
         return (
             <View style={styles.container}>
                 <View style={styles.routeInsider}>
-                    <TouchableOpacity onPress={goBack} style={styles.goBackBtn}>
+                    {!cancelRoute && <TouchableOpacity onPress={goBack} style={styles.goBackBtn}>
                         <MaterialIcons name="keyboard-arrow-left" size={28} color="black" />
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                     <View style={styles.locationContainer}>
                         <View style={styles.locationBottomContainer}>
                             <Text style={styles.routeText}>{route}</Text>
@@ -53,15 +71,15 @@ const Header = ({ route, Modal, ModalClose }) => {
                 <View style={styles.locationContainer}>
                     <Text style={{ fontWeight: 500 }}>Location</Text>
                     <View style={styles.locationBottomContainer}>
-                        <Ionicons name="location-sharp" size={18} color="#333" />
+                        <Ionicons name="location-sharp" size={18} color="#444" />
                         <Text style={styles.locationText}>Istanbul, Turkey</Text>
                         <TouchableOpacity>
-                            <MaterialIcons name="keyboard-arrow-down" size={24} color="#333" />
+                            <MaterialIcons name="keyboard-arrow-down" size={24} color="#444" />
                         </TouchableOpacity>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.avatarBtn}>
-                    <NotificationIcon width={24} height={24} strokeWidth={.6} />
+                <TouchableOpacity onPress={closeCartModal} style={styles.avatarBtn}>
+                    <CartTabIcon width={30} height={30} stroke="#444" />
                 </TouchableOpacity>
             </View>
         </View>
@@ -128,29 +146,23 @@ const styles = StyleSheet.create({
     locationText: {
         fontSize: 16,
         fontWeight: 700,
-        color: '#333'
+        color: '#444'
     },
     routeText: {
         fontSize: 18,
         fontWeight: 700,
-        color: '#333',
+        color: '#444',
     },
     closeBtn: {
-        position: 'absolute',
-        left: 0,
-        bottom: -5,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
+        borderRadius: 8,
         width: 40,
         height: 40,
-        borderRadius: 8,
     },
     favoriteBtn: {
-        position: 'absolute',
-        right: 0,
-        bottom: -5,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         width: 40,
         height: 40,
         borderRadius: 8,
@@ -163,7 +175,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 8,
-        shadowColor: "#333",
+        shadowColor: "#444",
         shadowOffset: {
             width: 0,
             height: 0,

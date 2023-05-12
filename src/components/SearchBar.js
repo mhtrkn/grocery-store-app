@@ -1,16 +1,22 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { AntDesign, Ionicons } from '@expo/vector-icons';
+import FilterModal from './FilterModal';
 
 const SearchBar = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const handleClose = () => {
+        setOpenModal(!openModal)
+    }
     return (
         <View style={styles.container}>
+            <FilterModal visible={openModal} onPress={handleClose} />
             <View style={styles.inputContainer}>
                 <View style={styles.searchIcon}>
                     <AntDesign name="search1" size={24} color="#444" />
                 </View>
                 <TextInput style={styles.searchInput} placeholder='Search food, drink, etc' />
-                <TouchableOpacity style={styles.filterIcon}>
+                <TouchableOpacity onPress={handleClose} style={styles.filterIcon}>
                     <Ionicons name="md-options" size={24} color="white" />
                 </TouchableOpacity>
             </View>

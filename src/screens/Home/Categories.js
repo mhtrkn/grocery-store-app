@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#FCFCFC'
+        backgroundColor: '#F5F5F5'
     },
     categoriesInsider: {
         height: 115,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         width: '90%',
         columnGap: 6,
         rowGap: 16,
-        paddingVertical: 20,
+        paddingVertical: 32,
     },
     ShowRoomImage: {
         width: '80%',
@@ -64,6 +64,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 6,
+        borderWidth: 1,
+        borderColor: '#EFEFEF'
     },
     showRoomTitle: {
         fontSize: 15,
