@@ -63,10 +63,13 @@ const DetailModal = ({ data, visible, onPress }) => {
                             </Text>
                         </View>
                     </View>
-                    <View>
-                        <Text>
-                            Hako
-                        </Text>
+                    <View style={styles.description}>
+                        <View style={styles.descriptionInsider}>
+                            <View style={styles.descriptionTitleBottomLine}>
+                                <Text style={styles.descriptionTitle}>Description</Text>
+                            </View>
+                            <Text style={styles.descriptionSubtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Text>
+                        </View>
                     </View>
                 </ScrollView>
                 <BottomContainer>
@@ -107,11 +110,11 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         width: '100%',
-        backgroundColor: 'red',
         paddingVertical: '5%',
     },
     imageContainer: {
         width: '100%',
+        height: '40%',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
@@ -122,12 +125,15 @@ const styles = StyleSheet.create({
     },
     discountContainer: {
         position: 'absolute',
-        left: '15%',
-        top: '15%',
+        left: '20%',
+        top: '20%',
         backgroundColor: '#04AC66',
         paddingVertical: 6,
         paddingHorizontal: 10,
-        borderRadius: 6,
+        borderTopLeftRadius: 16,
+        borderBottomRightRadius: 16,
+        borderTopRightRadius: 4,
+        borderBottomLeftRadius: 4,
         zIndex: 10
     },
     discountStyle: {
@@ -139,6 +145,7 @@ const styles = StyleSheet.create({
         width: '90%',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingVertical: '5%',
     },
     contentColumn: {
         flexDirection: 'column',
@@ -156,6 +163,37 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 700,
         color: '#444'
+    },
+    description: {
+        width: '100%',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingVertical: '2%',
+        paddingVertical: '5%'
+    },
+    descriptionInsider: {
+        width: '90%',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        gap: 12,
+    },
+    descriptionTitleBottomLine: {
+        justifyContent:'center',
+        alignItems:'flex-start',
+        borderWidth: 0,
+        borderBottomColor: '#04AC66',
+        borderBottomWidth: 3,
+        paddingHorizontal: 1
+    },
+    descriptionTitle: {
+        fontWeight: 700,
+        fontSize: 16,
+        color: '#444',
+        textAlign: 'left',
+    },
+    descriptionSubtitle: {
+        fontSize: 15,
     },
     addBtnContainer: {
         position: 'absolute',

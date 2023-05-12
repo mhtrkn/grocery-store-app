@@ -12,7 +12,7 @@ const ShippingAddress = () => {
                         <SimpleLineIcons name="location-pin" size={24} color="#04AC66" />
                     </View>
                     <Text style={styles.addressText}>
-                        Mehmet Türkan{"\n"}Tevfikbey mah. 1.Cevahir sk. No:47 D:33{"\n"}+90 (533) 597 8515
+                        Mehmet Türkan{"\n"}Zühtüpaşa, Bağdat Cad. No:2, 34724{"\n"}+90 (533) 597 8515
                     </Text>
                 </View>
             </View>

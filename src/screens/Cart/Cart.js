@@ -6,7 +6,7 @@ export default function Cart() {
 
     return (
         <View style={styles.container}>
-            <Header route={"Check Out"} />
+            <Header route={"Favorites"} cancelRoute />
         </View>
     )
 }

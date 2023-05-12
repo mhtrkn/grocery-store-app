@@ -5,16 +5,23 @@ import { CartTabIcon, FavoriteWhiteIcon, MenuIcon } from '../../assets/icons';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartModalVisible } from '../redux/actions';
-const Header = ({ Cart, route, Modal, ModalClose }) => {
+const Header = ({ cancelRoute, Cart, route, Modal, ModalClose }) => {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const goBack = () => {
         navigation.goBack()
     }
-    const  visible = useSelector(state => state.cartModalVisible)
+    const visible = useSelector(state => state.cartModalVisible)
 
     const closeCartModal = () => {
         dispatch(cartModalVisible(visible ? false : true))
+    }
+    const handleRoute = ({ Cart }) => {
+        if (Cart) {
+            console.log('Do you want the delete?')
+        } else {
+            console.log('Added Favorites!')
+        }
     }
 
     if (Modal) {
@@ -29,10 +36,10 @@ const Header = ({ Cart, route, Modal, ModalClose }) => {
                             <Text style={[styles.routeText, { color: 'white' }]}>{route}</Text>
                         </View>
                     </View>
-                    <TouchableOpacity onPress={() => console.log('Added favorites')} style={styles.favoriteBtn}>
+                    <TouchableOpacity onPress={() => handleRoute({ Cart: Cart ? true : false })} style={styles.favoriteBtn}>
                         {Cart ? <AntDesign name="delete" size={24} color="white" />
-                        :
-                        <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />}
+                            :
+                            <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -43,9 +50,9 @@ const Header = ({ Cart, route, Modal, ModalClose }) => {
         return (
             <View style={styles.container}>
                 <View style={styles.routeInsider}>
-                    <TouchableOpacity onPress={goBack} style={styles.goBackBtn}>
+                    {!cancelRoute && <TouchableOpacity onPress={goBack} style={styles.goBackBtn}>
                         <MaterialIcons name="keyboard-arrow-left" size={28} color="black" />
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                     <View style={styles.locationContainer}>
                         <View style={styles.locationBottomContainer}>
                             <Text style={styles.routeText}>{route}</Text>
