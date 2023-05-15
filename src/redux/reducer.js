@@ -17,14 +17,14 @@ const currentScreenName = (state = initialState.currentScreenName, action) => {
 }
 
 const Favorites = (state = initialState.favorites, action) => {
-    const updatedFavorites = state.cart?.filter(item => item?.id !== action?.payload);
+    const result = state?.filter((item) => JSON.stringify(item) !== JSON.stringify(action.payload))
     switch (action.type) {
         case ADD_FAVORITE:
-            return { ...state, favorites: [...state, action.payload] };
+            return [...state, action.payload];
         case DELETE_FAVORITE:
-            return { ...state, cart: updatedFavorites };
+            return result;
         case CLEAR_FAVORITE:
-            return state = [];
+            return [];
         default:
             return state;
     }
@@ -34,11 +34,11 @@ const Cart = (state = initialState.cart, action) => {
     const updatedCart = state.cart?.filter(item => item?.id !== action?.payload);
     switch (action.type) {
         case ADD_CART:
-            return { ...state, cart: [...state, action.payload] };
+            return { ...state, cart: [...state.cart, action.payload] };
         case DELETE_CART:
             return { ...state, cart: updatedCart };
         case CLEAR_CART:
-            return state = [];
+            return { ...state, cart: [] };
         default:
             return state;
     }

@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FlatList, Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import SectionHeader from './SectionHeader';
 import { popularItems } from '../constants';
 import { FavoriteIcon, FavoriteRedIcon } from '../../assets/icons';
 import { Entypo } from '@expo/vector-icons';
 import DetailModal from './DetailModal';
-import { useSelector } from 'react-redux';
-import { isItemFavorite } from "../utils";
+import { addFavorites, isItemFavorite } from "../utils";
+import { useDispatch } from 'react-redux';
 
 const Seperator = () => (
     <View style={{ padding: 10 }} />
 )
 
 const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
+
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -25,7 +26,7 @@ const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
                     </View>
                 }
                 <View style={styles.favoriteBtn}>
-                    <TouchableOpacity onPress={onPress}>
+                    <TouchableOpacity onPress={() => dispatch(addFavorites(data))}>
                         {
                             isItemFavorite(data) ?
                                 <FavoriteRedIcon width={20} height={20} />

@@ -38,7 +38,7 @@ const DetailModal = ({ data, visible, onPress }) => {
     return (
         <Modal visible={visible} style={styles.container} animationType="slide" >
             <View style={styles.container}>
-                <Header route={"Item Detail"} Modal={true} ModalClose={onPress} />
+                <Header route={"Item Detail"} Modal={true} itemData={data} ModalClose={onPress} />
                 <ScrollView style={styles.scrollContainer} contentContainerStyle={{
                     justifyContent: 'flex-start',
                     alignItems: 'center'
@@ -179,8 +179,8 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     descriptionTitleBottomLine: {
-        justifyContent:'center',
-        alignItems:'flex-start',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
         borderWidth: 0,
         borderBottomColor: '#04AC66',
         borderBottomWidth: 3,

@@ -1,11 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Ionicons, MaterialIcons, AntDesign } from '@expo/vector-icons';
-import { CartTabIcon, FavoriteWhiteIcon, MenuIcon } from '../../assets/icons';
+import { CartTabIcon, FavoriteRedIcon, FavoriteWhiteIcon, MenuIcon } from '../../assets/icons';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartModalVisible } from '../redux/actions';
-const Header = ({ cancelRoute, Cart, route, Modal, ModalClose }) => {
+import { addFavorites, isItemFavorite } from '../utils';
+
+const Header = ({ cancelRoute, Cart, route, itemData, Modal, ModalClose }) => {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const goBack = () => {
@@ -20,7 +22,7 @@ const Header = ({ cancelRoute, Cart, route, Modal, ModalClose }) => {
         if (Cart) {
             console.log('Do you want the delete?')
         } else {
-            console.log('Added Favorites!')
+            dispatch(addFavorites(itemData))
         }
     }
 
@@ -39,7 +41,12 @@ const Header = ({ cancelRoute, Cart, route, Modal, ModalClose }) => {
                     <TouchableOpacity onPress={() => handleRoute({ Cart: Cart ? true : false })} style={styles.favoriteBtn}>
                         {Cart ? <AntDesign name="delete" size={24} color="white" />
                             :
-                            <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />}
+                            (
+                                isItemFavorite(itemData) ? <FavoriteRedIcon width={28} height={24} strokeWidth={1.8}/>
+                                    :
+                                    <FavoriteWhiteIcon width={28} height={24} strokeWidth={1.8} />
+                            )
+                        }
                     </TouchableOpacity>
                 </View>
             </View>

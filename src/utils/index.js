@@ -22,13 +22,11 @@ export const getAllFavorites = () => {
 };
 
 export const addFavorites = (item) => {
-    const dispatch = useDispatch();
-    dispatch(updateFavoritesChange(ADD_FAVORITE, item));
+    return updateFavoritesChange(ADD_FAVORITE, item);
 };
 
 export const deleteFavorites = (item) => {
-    const dispatch = useDispatch();
-    dispatch(updateFavoritesChange(DELETE_FAVORITE, item));
+    return updateFavoritesChange(DELETE_FAVORITE, item);
 };
 
 export const clearFavorites = () => {

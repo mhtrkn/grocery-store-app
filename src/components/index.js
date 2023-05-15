@@ -13,6 +13,7 @@ import Recommend from "./Recommend"
 import BottomContainer from "./BottomContainer"
 import ShippingAddress from "./ShippingAddress"
 import OrderSummary from "./OrderSummary"
+import FavoriteCardItem from "./FavoriteCardItem"
 
 export {
     Feed,
@@ -30,4 +31,5 @@ export {
     BottomContainer,
     ShippingAddress,
     OrderSummary,
+    FavoriteCardItem
 }
