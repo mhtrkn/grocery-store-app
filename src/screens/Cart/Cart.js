@@ -1,11 +1,11 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Header, FavoriteCardItem } from '../../components'
-import { useSelector } from 'react-redux'
+import { Header, FavoriteCardItem, BottomContainer } from '../../components'
 import { useNavigation } from '@react-navigation/native'
+import { getAllFavorites } from '../../utils'
 
 export default function Cart() {
-    const favoriteData = useSelector(state => state.Favorites)
+    const favoriteData = getAllFavorites()
     const navigation = useNavigation()
 
     const handleRoute = () => {
@@ -77,19 +77,17 @@ const styles = StyleSheet.create({
         gap: 24,
     },
     nullDataImage: {
-        width: '80%',
+        width: '60%',
         padding: '10%',
-        height: 300,
+        height: 240,
         alignItems: 'center',
         justifyContent: 'center',
         shadowColor: '#444',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.2,
-        shadowRadius: 10, 
+        shadowOffset: { width: -2, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 1,
     },
     nullDataBttn: {
-        position: 'absolute',
-        bottom: '25%',
         backgroundColor: '#04AC69',
         paddingVertical: 16,
         paddingHorizontal: 32,

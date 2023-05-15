@@ -4,10 +4,13 @@ import ProfileStack from "./Profile/ProfileStack"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CartTabIcon, FavoriteTabIcon, HomeTabIcon, ProfileTabIcon } from "../../assets/icons";
 import { View, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
 function BottomTabs() {
+
+    const routeName = useSelector(state => state.currentScreenName)
 
     const generateColor = (focused) => {
         if (focused) {
@@ -20,6 +23,9 @@ function BottomTabs() {
     return (
         <Tab.Navigator screenOptions={{
             headerShown: false,
+            tabBarStyle: {
+                display: routeName === 'Payment' ? 'none' : 'flex'
+            }
         }}>
             <Tab.Screen name="Home" component={HomeStack} options={{
                 tabBarIcon: ({ focused }) => (
