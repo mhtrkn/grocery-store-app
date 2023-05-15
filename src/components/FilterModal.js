@@ -44,7 +44,7 @@ const FilterModal = ({ visible, onPress }) => {
                             <Text style={styles.filterHeaderText}>
                                 Categories
                             </Text>
-                            <ScrollView horizontal contentContainerStyle={{ justifyContent: 'flex-start', gap: 8, alignItems: 'center' }}>
+                            <ScrollView horizontal contentContainerStyle={{ justifyContent: 'flex-start', gap: 8, alignItems: 'center', paddingVertical: 8, paddingTop: 16 }}>
                                 {allCategories.map((item) => {
                                     return (
                                         <TouchableOpacity onPress={() => handleActive(item.id)} style={[styles.filterCategory, { backgroundColor: active === item.id && '#04AC66', color: active === item.id && 'white' }]} key={item.id}>

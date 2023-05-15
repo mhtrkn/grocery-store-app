@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         shadowColor: '#04AC66',
+        backgroundColor: 'rgba(255, 255, 255, .1)',
         shadowOffset: {
             width: 0,
             height: 2,

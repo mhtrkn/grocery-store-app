@@ -45,7 +45,7 @@ const OrderSummary = () => {
                                     Fruit
                                 </Text>
                                 <Text style={styles.itemPrice}>
-                                    {item.price}
+                                    ${item.price}
                                 </Text>
                             </View>
                         </View>
