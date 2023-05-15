@@ -1,20 +1,36 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ADD_CART, ADD_FAVORITE, CLEAR_CART, CLEAR_FAVORITE, DELETE_CART, DELETE_FAVORITE, updateCartChange, updateFavoritesChange } from "../redux/actions";
 
 export const isItemFavorite = (item) => {
-    const favorite = useSelector(state => state?.Favorites);
-    return favorite.includes(item);
+    const arr = useSelector(state => state?.Favorites);
+    return arr.includes(item);
 };
 
 export const isItemInCart = (item) => {
-    const cart = useSelector(state => state?.Cart);
-    return cart.some(cartItem => cartItem?.id === item?.id);
+    const arr = useSelector(state => state?.Cart);
+    return arr.includes(item);
 };
+
+export const getTotalPrice = () => {
+    const arr = useSelector(state => state?.Cart);
+    let price = 0;
+    for (let i = 0; i < arr.length; i++) {
+        price += Number(arr[i].price);
+    }
+    return price;
+}
 
 export const getAllCartItems = () => {
     const cart = useSelector(state => state?.Cart);
     return cart;
 };
+
+export const howManyCartItems = (item) => {
+    const cart = useSelector(state => state?.Cart);
+    const count = cart.filter(items => items.id === item.id).length;
+
+    return count
+}
 
 export const getAllFavorites = () => {
     const favorites = useSelector(state => state?.Favorites);
@@ -22,31 +38,25 @@ export const getAllFavorites = () => {
 };
 
 export const addFavorites = (item) => {
-    const dispatch = useDispatch();
-    dispatch(updateFavoritesChange(ADD_FAVORITE, item));
+    return updateFavoritesChange(ADD_FAVORITE, item);
 };
 
 export const deleteFavorites = (item) => {
-    const dispatch = useDispatch();
-    dispatch(updateFavoritesChange(DELETE_FAVORITE, item));
+    return updateFavoritesChange(DELETE_FAVORITE, item);
 };
 
 export const clearFavorites = () => {
-    const dispatch = useDispatch();
-    dispatch(updateFavoritesChange(CLEAR_FAVORITE));
+    return updateFavoritesChange(CLEAR_FAVORITE);
 };
 
 export const addCart = (item) => {
-    const dispatch = useDispatch();
-    dispatch(updateCartChange(ADD_CART, item));
+    return updateCartChange(ADD_CART, item);
 };
 
 export const deleteCart = (item) => {
-    const dispatch = useDispatch();
-    dispatch(updateCartChange(DELETE_CART, item));
+    return updateCartChange(DELETE_CART, item);
 };
 
 export const clearCart = () => {
-    const dispatch = useDispatch();
-    dispatch(updateCartChange(CLEAR_CART));
+    return updateCartChange(CLEAR_CART);
 };

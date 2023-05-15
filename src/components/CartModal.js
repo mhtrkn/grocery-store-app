@@ -5,17 +5,20 @@ import Header from '../components/Header';
 import ShippingAddress from '../components/ShippingAddress';
 import OrderSummary from '../components/OrderSummary';
 import BottomContainer from '../components/BottomContainer';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 import { cartModalVisible } from '../redux/actions';
+import { getTotalPrice } from '../utils';
 
 const CartModal = ({ visible }) => {
+    const cart = useSelector(state => state.Cart)
     const dispatch = useDispatch()
     const navigation = useNavigation()
     const routePayment = () => {
-        navigation.navigate('Cart Tab', { screen: 'Payment' })
+        navigation.navigate('Favorite', { screen: 'Payment' })
         dispatch(cartModalVisible(false))
     }
+    const price = getTotalPrice();
 
     return (
         <Modal animationType='slide' visible={visible} style={styles.container}>
@@ -29,20 +32,22 @@ const CartModal = ({ visible }) => {
                     <OrderSummary />
                 </View>
             </ScrollView>
-            <BottomContainer>
-                <View style={styles.routeContainer}>
-                    <TouchableOpacity onPress={routePayment} style={styles.addBtn}>
-                        <Text style={styles.addText}>
-                            Go to Payment
-                        </Text>
-                    </TouchableOpacity>
-                    <View style={styles.totalContainer}>
-                        <Text style={styles.totalPriceText}>
-                            $29.18
-                        </Text>
+            {cart.length >= 1 &&
+                <BottomContainer>
+                    <View style={styles.routeContainer}>
+                        <TouchableOpacity onPress={routePayment} style={styles.addBtn}>
+                            <Text style={styles.addText}>
+                                Go to Payment
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={styles.totalContainer}>
+                            <Text style={styles.totalPriceText}>
+                                ${price}
+                            </Text>
+                        </View>
                     </View>
-                </View>
-            </BottomContainer>
+                </BottomContainer>
+            }
         </Modal>
     )
 }
@@ -93,6 +98,7 @@ const styles = StyleSheet.create({
     scrollContainer: {
         width: '100%',
         position: 'relative',
+        backgroundColor: '#F5F5F5'
     },
     addText: {
         fontSize: 18,

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FlatList, Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import SectionHeader from './SectionHeader';
 import { popularItems } from '../constants';
 import { FavoriteIcon, FavoriteRedIcon } from '../../assets/icons';
 import { Entypo } from '@expo/vector-icons';
 import DetailModal from './DetailModal';
-import { useSelector } from 'react-redux';
-import { isItemFavorite } from "../utils";
+import { addFavorites, deleteFavorites, isItemFavorite } from "../utils";
+import { useDispatch } from 'react-redux';
 
 const Seperator = () => (
     <View style={{ padding: 10 }} />
@@ -15,6 +14,14 @@ const Seperator = () => (
 
 const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
 
+    const dispatch = useDispatch()
+    const isLike = isItemFavorite(data)
+    const handleAddFav = item => {
+        dispatch(addFavorites(item))
+    }
+    const handleDeleteFav = item => {
+        dispatch(deleteFavorites(item))
+    }
     return (
         <>
             <DetailModal data={sendData} visible={open} onPress={openDetail} />
@@ -25,7 +32,7 @@ const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
                     </View>
                 }
                 <View style={styles.favoriteBtn}>
-                    <TouchableOpacity onPress={onPress}>
+                    <TouchableOpacity onPress={() => (isLike ? handleDeleteFav(data) : handleAddFav(data))}>
                         {
                             isItemFavorite(data) ?
                                 <FavoriteRedIcon width={20} height={20} />
@@ -47,7 +54,7 @@ const ItemCard = ({ data, sendData, open, openDetail, onPress, like }) => {
                 <View style={styles.itemCardBot}>
                     <View style={styles.itemCardBotInsider}>
                         <Text style={styles.itemTypeText}>{data.title}</Text>
-                        <Text style={styles.priceText}>{data.price}</Text>
+                        <Text style={styles.priceText}>${data.price}</Text>
                     </View>
                 </View>
             </TouchableOpacity>

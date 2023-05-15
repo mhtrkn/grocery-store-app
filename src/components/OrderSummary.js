@@ -3,72 +3,54 @@ import React from 'react'
 import Pineapple from "../../assets/pineapple.png"
 import Cabbage from "../../assets/cabbage.png"
 import Watermelon from "../../assets/watermelon.png"
+import { getAllCartItems, howManyCartItems } from '../utils'
 
 const OrderSummary = () => {
+    const data = getAllCartItems();
+
+    if (data.length === 0) {
+        return (
+            <View style={styles.direction}>
+                <Text style={styles.headerText}>Order Summary</Text>
+                <View style={styles.container}>
+                    <View style={styles.imageContainer}>
+                        <Image source={require("../../assets/wishlist.png")} style={styles.nullDataimage} />
+                        <Text style={styles.nullText}>
+                            Your cart items will be displayed here. Start exploring to add Cart!
+                        </Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.direction}>
             <Text style={styles.headerText}>Order Summary</Text>
             <View style={styles.container}>
-                <View style={styles.itemContainer}>
-                    <View style={styles.itemCountContainer}>
-                        <Text style={styles.countText}>x1</Text>
-                    </View>
-                    <View style={styles.item}>
-                        <Image source={Pineapple} style={styles.itemImage} />
-                    </View>
-                    <View style={styles.itemTextcontainer}>
-                        <Text style={styles.itemHeader}>
-                            Pineapple
-                        </Text>
-                        <Text style={styles.itemSubtitle}>
-                            Fruit
-                        </Text>
-                        <Text style={styles.itemPrice}>
-                            $6.70
-                        </Text>
-                    </View>
-                </View>
-
-                <View style={styles.itemContainer}>
-                    <View style={styles.itemCountContainer}>
-                        <Text style={styles.countText}>x2</Text>
-                    </View>
-                    <View style={styles.item}>
-                        <Image source={Cabbage} style={styles.itemImage} />
-                    </View>
-                    <View style={styles.itemTextcontainer}>
-                        <Text style={styles.itemHeader}>
-                            Cabbage
-                        </Text>
-                        <Text style={styles.itemSubtitle}>
-                            Vegetables
-                        </Text>
-                        <Text style={styles.itemPrice}>
-                            $9.99
-                        </Text>
-                    </View>
-                </View>
-
-
-                <View style={styles.itemContainer}>
-                    <View style={styles.itemCountContainer}>
-                        <Text style={styles.countText}>x1</Text>
-                    </View>
-                    <View style={styles.item}>
-                        <Image source={Watermelon} style={styles.itemImage} />
-                    </View>
-                    <View style={styles.itemTextcontainer}>
-                        <Text style={styles.itemHeader}>
-                            Watermelon
-                        </Text>
-                        <Text style={styles.itemSubtitle}>
-                            Fruit
-                        </Text>
-                        <Text style={styles.itemPrice}>
-                            $12.49
-                        </Text>
-                    </View>
-                </View>
+                {data && data?.map((item, key) => {
+                    return (
+                        <View key={key} style={styles.itemContainer}>
+                            <View style={styles.itemCountContainer}>
+                                <Text style={styles.countText}>x {howManyCartItems(item)}</Text>
+                            </View>
+                            <View style={styles.item}>
+                                <Image source={item.photo} style={styles.itemImage} />
+                            </View>
+                            <View style={styles.itemTextcontainer}>
+                                <Text style={styles.itemHeader}>
+                                    {item.title}
+                                </Text>
+                                <Text style={styles.itemSubtitle}>
+                                    Fruit
+                                </Text>
+                                <Text style={styles.itemPrice}>
+                                    {item.price}
+                                </Text>
+                            </View>
+                        </View>
+                    )
+                })}
             </View>
         </View>
     )
@@ -93,7 +75,27 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        gap: 12
+        gap: 12,
+    },
+    imageContainer: {
+        width: '100%',
+        gap: 20,
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden'
+    },
+    nullDataimage: {
+        width: '100%',
+        height: '50%',
+        opacity: .75,
+        resizeMode: 'contain',
+    },
+    nullText: {
+        fontSize: 16,
+        fontWeight: 500,
+        color: '#444',
+        textAlign: 'center'
     },
     headerText: {
         fontSize: 16,

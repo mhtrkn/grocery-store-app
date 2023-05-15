@@ -3,34 +3,35 @@ import React, { useState } from 'react'
 import Header from './Header'
 import { AntDesign } from '@expo/vector-icons'
 import BottomContainer from './BottomContainer'
+import { useDispatch, useSelector } from 'react-redux'
+import { addCart, deleteCart, isItemInCart } from '../utils'
 
 const DetailModal = ({ data, visible, onPress }) => {
     const [addText, setAddText] = useState("Add to Cart")
     const [count, setCount] = useState(1)
-    const [added, setAdded] = useState(false);
-    const handleAdded = () => {
+    const added = isItemInCart(data)
+    const cartData = useSelector(state => state.Cart)
+    const dispatch = useDispatch()
+    console.log(cartData)
+    const handleAdded = item => {
+        dispatch(addCart(item))
         setAddText(
             <ActivityIndicator size="small" color="white" />
         )
-        setTimeout(() => {
-            setAdded(true)
-        }, 1000)
     }
     const handleAddCount = type => {
         if (type === "plus") {
-            const tmp = count
             setCount(
                 <ActivityIndicator size="small" color="white" />
             )
             setTimeout(() => {
-                setCount(tmp + 1)
+                dispatch(addCart(data))
             }, 750)
         } else {
             if (count <= 1) {
                 setAddText("Add to Cart")
-                setAdded(false)
             } else {
-                setCount(count - 1)
+                dispatch(deleteCart(data))
             }
         }
     }
@@ -38,7 +39,7 @@ const DetailModal = ({ data, visible, onPress }) => {
     return (
         <Modal visible={visible} style={styles.container} animationType="slide" >
             <View style={styles.container}>
-                <Header route={"Item Detail"} Modal={true} ModalClose={onPress} />
+                <Header route={"Item Detail"} Modal={true} itemData={data} ModalClose={onPress} />
                 <ScrollView style={styles.scrollContainer} contentContainerStyle={{
                     justifyContent: 'flex-start',
                     alignItems: 'center'
@@ -74,7 +75,7 @@ const DetailModal = ({ data, visible, onPress }) => {
                 </ScrollView>
                 <BottomContainer>
                     {!added ?
-                        (<TouchableOpacity onPress={handleAdded} style={styles.addBtn}>
+                        (<TouchableOpacity onPress={() => handleAdded(data)} style={styles.addBtn}>
                             <Text style={styles.addText}>
                                 {addText}
                             </Text>
@@ -179,8 +180,8 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     descriptionTitleBottomLine: {
-        justifyContent:'center',
-        alignItems:'flex-start',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
         borderWidth: 0,
         borderBottomColor: '#04AC66',
         borderBottomWidth: 3,
