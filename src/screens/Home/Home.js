@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSelector } from 'react-redux';
 import CartModal from '../../components/CartModal';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -14,11 +15,17 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <Header />
-            <CartModal visible={visible} />
-            <SearchBar />
-            <CategoriesShowRoom />
-            <Deals />
-            <PopularItemShowRoom />
+            <ScrollView style={{ width: '100%' }} contentContainerStyle={{
+                justifyContent: 'flex-start',
+                alignItems: 'center'
+            }}>
+                <SearchBar />
+                <CartModal visible={visible} />
+                <CategoriesShowRoom />
+                <Deals />
+                <PopularItemShowRoom />
+                <Deals />
+            </ScrollView>
         </View>
     )
 }
