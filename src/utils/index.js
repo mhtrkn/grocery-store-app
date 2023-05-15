@@ -2,20 +2,22 @@ import { useSelector } from "react-redux";
 import { ADD_CART, ADD_FAVORITE, CLEAR_CART, CLEAR_FAVORITE, DELETE_CART, DELETE_FAVORITE, updateCartChange, updateFavoritesChange } from "../redux/actions";
 
 export const isItemFavorite = (item) => {
-    const favorite = useSelector(state => state?.Favorites);
-    return favorite.includes(item);
+    const arr = useSelector(state => state?.Favorites);
+    return arr.includes(item);
 };
 
 export const isItemInCart = (item) => {
-    const cart = useSelector(state => state?.Cart);
-    return cart.includes(item);
+    const arr = useSelector(state => state?.Cart);
+    return arr.includes(item);
 };
 
 export const getTotalPrice = () => {
-    let result = 0;
-    const cart = useSelector(state => state?.Cart);
-    result += cart.map((item) => item.price)
-    console.log('Deneme: ', result)
+    const arr = useSelector(state => state?.Cart);
+    let price = 0;
+    for (let i = 0; i < arr.length; i++) {
+        price += Number(arr[i].price);
+    }
+    return price;
 }
 
 export const getAllCartItems = () => {

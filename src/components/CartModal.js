@@ -18,6 +18,7 @@ const CartModal = ({ visible }) => {
         navigation.navigate('Favorite', { screen: 'Payment' })
         dispatch(cartModalVisible(false))
     }
+    const price = getTotalPrice();
 
     return (
         <Modal animationType='slide' visible={visible} style={styles.container}>
@@ -41,7 +42,7 @@ const CartModal = ({ visible }) => {
                         </TouchableOpacity>
                         <View style={styles.totalContainer}>
                             <Text style={styles.totalPriceText}>
-                                {getTotalPrice()}
+                                ${price}
                             </Text>
                         </View>
                     </View>

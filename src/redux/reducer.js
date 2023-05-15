@@ -32,10 +32,13 @@ const Favorites = (state = initialState.favorites, action) => {
 
 const Cart = (state = initialState.cart, action) => {
     const result = state?.filter((item) => JSON.stringify(item) !== JSON.stringify(action.payload))
-
+    const isItemExist = state.some((item) => JSON.stringify(item) === JSON.stringify(action.payload));
+    
     switch (action.type) {
         case ADD_CART:
-            return [ ...state, action.payload ];
+            if (!isItemExist) {
+                return [...state, action.payload];
+            }
         case DELETE_CART:
             return result;
         case CLEAR_CART:

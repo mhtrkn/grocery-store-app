@@ -103,27 +103,27 @@ export const popularItems = [
         id: '1',
         title: 'Apple',
         photo: Vegetables,
-        price: '5.99$',
+        price: 5.99,
         discount: "20%"
     },
     {
         id: '2',
         title: 'Orange',
         photo: Fruits,
-        price: '10.99$'
+        price: 10.99
     },
     {
         id: '3',
         title: 'Pineapple',
         photo: Fruits,
-        price: '12.49$',
+        price: 12.49,
         discount: "30%"
     },
     {
         id: '4',
         title: 'Watermelon',
         photo: Vegetables,
-        price: '19.99$',
+        price: 19.99,
         discount: "15%"
     },
 ];
